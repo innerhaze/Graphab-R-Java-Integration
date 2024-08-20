@@ -1,5 +1,5 @@
-# Graphab-R-Java-Integration
-Integrates Java with R using Graphab software for automated cost surface analysis. Uses rJava to execute .jar files and processes raster data to generate and organize connectivity models.
+# Java-R Integration with Graphab: Cost Surface Processing and Data Management
+Integrates Java within R using Graphab for automated processing of cost surfaces. Utilizes rJava to execute Graphab .jar files and manage connectivity modeling. Includes a for loop for handling multiple cost surfaces and renaming IDs based on species data.
 
 To view the **R** code and detailed instructions, visit:
 
