@@ -3,4 +3,4 @@ Integrates Java with R using Graphab software for automated cost surface analysi
 
 To view the **R** code and detailed instructions, visit:
 
-[See the Code and Instructions](https://innerhaze.github.io/Custom-Pixel-Reclassification-in-Raster-Data-Using-Specified-Coordinates/)
+[See the Code and Instructions](https://innerhaze.github.io/Graphab-R-Java-Integration/)
