@@ -5,20 +5,22 @@
     "type": "yaml",
     "hash": "3779024821",
     "contents": "",
-    "dirty": false,
+    "dirty": true,
     "created": 1724134903764.0,
     "source_on_save": false,
     "relative_order": 1,
     "properties": {
         "source_window_id": "",
-        "Source": "Source"
+        "Source": "Source",
+        "cursorPosition": "4,0",
+        "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1724143367,
+    "lastKnownWriteTime": 1724214531,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1724143367981,
+    "last_content_update": 1724214531280,
     "read_only": false,
     "read_only_alternatives": []
 }
