@@ -3,4 +3,4 @@ Integrates Java within R using Graphab for automated processing of cost surfaces
 
 To view the **R** code and detailed instructions, visit:
 
-[See the Code and Instructions](https://innerhaze.github.io/Integrates-Java-within-R-using-Graphab-for-automated-processing-of-cost-surfaces.-Utilizes-rJava-to-/)
+[See the Code and Instructions](https://innerhaze.github.io/Java-R-Integration-with-Graphab-Cost-Surface-Processing-and-Data-Management/)
