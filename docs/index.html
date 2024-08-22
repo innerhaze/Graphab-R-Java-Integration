@@ -17,7 +17,7 @@
 <script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -30,6 +30,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 
 <style type="text/css">
@@ -148,7 +151,6 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<link rel="stylesheet" href="styles.css" type="text/css" />
 
 
 
@@ -310,6 +312,75 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
 
 </head>
 
@@ -317,6 +388,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -349,27 +430,10 @@ $(document).ready(function () {
 <h1 class="title toc-ignore">Java-R Integration with Graphab: Cost
 Surface Processing and Data Management</h1>
 <h4 class="author">Sebastián Sánchez Cuartas</h4>
-<h4 class="date">agosto 20, 2024</h4>
+<h4 class="date">agosto 21, 2024</h4>
 
 </div>
 
-<div id="TOC">
-<ul>
-<li><a href="#introduction"
-id="toc-introduction"><strong>Introduction</strong></a>
-<ul>
-<li><a href="#linksets-in-new-folder"
-id="toc-linksets-in-new-folder"><strong>Linksets in New
-Folder</strong></a></li>
-<li><a href="#assignment-of-species-identities-to-linkset-results"
-id="toc-assignment-of-species-identities-to-linkset-results"><strong>Assignment
-of Species Identities to Linkset Results</strong></a></li>
-<li><a href="#converting-a-relationship-list-to-distance-matrices"
-id="toc-converting-a-relationship-list-to-distance-matrices"><strong>Converting
-a Relationship List to Distance Matrices</strong></a></li>
-</ul></li>
-</ul>
-</div>
 
 <div id="introduction" class="section level1">
 <h1><strong>Introduction</strong></h1>
@@ -461,8 +525,9 @@ patches for each resistance surface if necessary.</p>
 <span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Execute the main method of the JAR file with the defined parameters</span></span>
 <span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">.jcall</span>(<span class="st">&quot;org.thema.graphab.MainFrame&quot;</span>, <span class="st">&quot;V&quot;</span>, <span class="st">&quot;main&quot;</span>, params)</span>
 <span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<div id="linksets-in-new-folder" class="section level2">
-<h2><strong>Linksets in New Folder</strong></h2>
+</div>
+<div id="linksets-in-new-folder" class="section level1">
+<h1><strong>Linksets in New Folder</strong></h1>
 <p>After generating the models using Graphab, the results are organized
 into separate folders for each resistance surface. Within these folders,
 there is a .csv file called <strong>´linkset´</strong>, which contains
@@ -520,9 +585,9 @@ code so that they can be used correctly.</p>
 <span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="assignment-of-species-identities-to-linkset-results"
-class="section level2">
-<h2><strong>Assignment of Species Identities to Linkset
-Results</strong></h2>
+class="section level1">
+<h1><strong>Assignment of Species Identities to Linkset
+Results</strong></h1>
 <p>The output_path now contains all the renamed CSV files for the
 linksets, with names updated as described earlier. These CSV files
 originally had IDs assigned by Graphab, corresponding to the
@@ -559,48 +624,9 @@ identities are now assigned to the linkset results (Figure 1).</p>
 <span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Write the updated data back to the CSV file</span></span>
 <span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write.csv</span>(data, <span class="at">file =</span> csv_file, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-</div>
-<div id="converting-a-relationship-list-to-distance-matrices"
-class="section level2">
-<h2><strong>Converting a Relationship List to Distance
-Matrices</strong></h2>
-<p>The following code takes a CSV file containing a relationship list
-(also known as an incidence table) and converts it into three separate
-distance matrices. Each matrix corresponds to one of the three columns
-representing different indices: Dist, DistM, and CF. The code then saves
-each of the matrices independently.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the CSV file containing the final results from the vector created in the previous step</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>output_path <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;C:/Your/Path/csv&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Get unique values of ID1 and ID2, and sort them</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>id_values <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">unique</span>(<span class="fu">c</span>(output_path<span class="sc">$</span>ID1, output_path<span class="sc">$</span>ID2)))</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a directory to store the square matrices</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>destination_directory <span class="ot">&lt;-</span> <span class="st">&quot;C:/Your/Path/To/Matrix_Results/&quot;</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(destination_directory, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Iterate over each metric (column)</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (metric <span class="cf">in</span> <span class="fu">c</span>(<span class="st">&quot;Dist&quot;</span>, <span class="st">&quot;DistM&quot;</span>, <span class="st">&quot;CF_beta0_graph1&quot;</span>, <span class="st">&quot;CF_beta1_graph1&quot;</span>)) {</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create an empty distance matrix</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  square_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> <span class="fu">length</span>(id_values), <span class="at">ncol =</span> <span class="fu">length</span>(id_values), </span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>                          <span class="at">dimnames =</span> <span class="fu">list</span>(id_values, id_values)) <span class="co"># Add more concatenated columns if necessary</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Fill the matrix with corresponding values</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(output_path)) {</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    id1 <span class="ot">&lt;-</span> output_path[i, <span class="st">&quot;ID1&quot;</span>]</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    id2 <span class="ot">&lt;-</span> output_path[i, <span class="st">&quot;ID2&quot;</span>]</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    value <span class="ot">&lt;-</span> output_path[i, metric]</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    square_matrix[id1, id2] <span class="ot">&lt;-</span> value</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    square_matrix[id2, id1] <span class="ot">&lt;-</span> value</span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Save the matrix to a CSV file</span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write.csv</span>(square_matrix, <span class="at">file =</span> <span class="fu">paste0</span>(destination_directory, metric, <span class="st">&quot;.csv&quot;</span>))</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>…</p>
 <div class="figure" style="text-align: center">
-<img src="pasos.jpg" alt="*Figure 1. Illustration of the data processing workflow. In **1**, each species is assigned a unique ID based on its coordinates, as detailed in [this other repository](https://github.com/innerhaze/Assignment-of-Unique-Identifiers-to-Patches-in-Connectivity-Modeling-Using-Graphab?tab=readme-ov-file). In **2**, described in the 'Linksets in New Folder' section of this repository, connectivity indices are obtained for the IDs of each patch, corresponding to each species. In **3**, detailed in the 'Assignment of Species Identities to Linkset Results' section of this repository, the IDs in the linkset files created in 2 are renamed using the IDs from 1. In **4**, the transformation from a relationship list (incidence table) to a distance matrix is shown, where each created index (Dist, DistM, and CF) is split into three separate matrices. The dashes represent missing data in these matrices, as only the available data from the example in 3 is being considered.*" width="140%" />
+<img src="pasos.jpg" alt="*Figure 1. Illustration of the data processing workflow. In **1**, each species is assigned a unique ID based on its coordinates, as detailed in [this other repository](https://github.com/innerhaze/Assignment-of-Unique-Identifiers-to-Patches-in-Connectivity-Modeling-Using-Graphab?tab=readme-ov-file). In **2**, described in the 'Linksets in New Folder' section of this repository, connectivity indices are obtained for the IDs of each patch, corresponding to each species. In **3**, detailed in the 'Assignment of Species Identities to Linkset Results' section of this repository, the IDs in the linkset files created in 2 are renamed using the IDs from 1.*" width="120%" />
 <p class="caption">
 <em>Figure 1. Illustration of the data processing workflow. In
 <strong>1</strong>, each species is assigned a unique ID based on its
@@ -611,20 +637,16 @@ in New Folder’ section of this repository, connectivity indices are
 obtained for the IDs of each patch, corresponding to each species. In
 <strong>3</strong>, detailed in the ‘Assignment of Species Identities to
 Linkset Results’ section of this repository, the IDs in the linkset
-files created in 2 are renamed using the IDs from 1. In
-<strong>4</strong>, the transformation from a relationship list
-(incidence table) to a distance matrix is shown, where each created
-index (Dist, DistM, and CF) is split into three separate matrices. The
-dashes represent missing data in these matrices, as only the available
-data from the example in 3 is being considered.</em>
+files created in 2 are renamed using the IDs from 1.</em>
 </p>
 </div>
 <p>…</p>
 </div>
+
+
+
 </div>
-
-
-
+</div>
 
 </div>
 
@@ -657,6 +679,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

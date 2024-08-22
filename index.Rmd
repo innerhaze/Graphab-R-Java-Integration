@@ -6,9 +6,12 @@ output:
   html_document:
     toc: true
     toc_depth: 2
-    theme: united
+    toc_float:
+      collapsed: false
+      smooth_scroll: true
+      position: "left"
+    theme: flatly
     highlight: tango
-    css: styles.css
 ---
 
 # **Introduction**
@@ -93,7 +96,7 @@ for (i in seq_along(tif_files)) {
 
 ```
 
-## **Linksets in New Folder**
+# **Linksets in New Folder**
 
 After generating the models using Graphab, the results are organized into separate folders for each resistance surface. Within these folders, there is a .csv file called **´linkset´**, which contains the calculated connectivity indices for each pair of patches studied. The following code takes all the linkset files and renames them, assigning each a unique name that references the cost raster used. Additionally, a numeric prefix (optional) is added, ranging from 1 to the total number of files. This numeric prefix is useful for the historical connectivity algorithm to correctly identify the connectivity indices of each cost raster and perform the corresponding calculations ([see the algorithm here](https://github.com/innerhaze/R-algorithm-for-Historical-Connectivity-Analysis-for-P-ramo-Lineages-using-a-Pleistocene-polen-model)). It is important to set the path of the linksets within the **´archivos_indices´** vector in the algorithm's code so that they can be used correctly.
 
@@ -142,7 +145,7 @@ for (subfolder in subfolders) {
 
 ```
 
-## **Assignment of Species Identities to Linkset Results**
+# **Assignment of Species Identities to Linkset Results**
 
 The output_path now contains all the renamed CSV files for the linksets, with names updated as described earlier. These CSV files originally had IDs assigned by Graphab, corresponding to the identification numbers of each patch. In this case, each ID is associated with a species occupying that patch. The species names linked to each patch were identified in a previous step, detailed in [this repository](https://github.com/innerhaze/Assignment-of-Unique-Identifiers-to-Patches-in-Connectivity-Modeling-Using-Graphab?tab=readme-ov-file). Using the points_file CSV from that repository , species identities are now assigned to the linkset results (Figure 1).
 
@@ -178,48 +181,9 @@ for (csv_file in csv_files) {
 
 ```
 
-## **Converting a Relationship List to Distance Matrices**
-
-The following code takes a CSV file containing a relationship list (also known as an incidence table) and converts it into three separate distance matrices. Each matrix corresponds to one of the three columns representing different indices: Dist, DistM, and CF. The code then saves each of the matrices independently.
-
-```{r eval=FALSE}
-
-# Read the CSV file containing the final results from the vector created in the previous step
-output_path <- read.csv("C:/Your/Path/csv", stringsAsFactors = FALSE)
-
-# Get unique values of ID1 and ID2, and sort them
-id_values <- sort(unique(c(output_path$ID1, output_path$ID2)))
-
-# Create a directory to store the square matrices
-destination_directory <- "C:/Your/Path/To/Matrix_Results/"
-
-dir.create(destination_directory, showWarnings = FALSE)
-
-# Iterate over each metric (column)
-for (metric in c("Dist", "DistM", "CF_beta0_graph1", "CF_beta1_graph1")) {
-  # Create an empty distance matrix
-  square_matrix <- matrix(NA, nrow = length(id_values), ncol = length(id_values), 
-                          dimnames = list(id_values, id_values)) # Add more concatenated columns if necessary
-  
-  # Fill the matrix with corresponding values
-  for (i in 1:nrow(output_path)) {
-    id1 <- output_path[i, "ID1"]
-    id2 <- output_path[i, "ID2"]
-    value <- output_path[i, metric]
-    square_matrix[id1, id2] <- value
-    square_matrix[id2, id1] <- value
-  }
-  
-  # Save the matrix to a CSV file
-  write.csv(square_matrix, file = paste0(destination_directory, metric, ".csv"))
-}
-
-
-```
-
 ...
 
-```{r echo=FALSE, fig.align='center', fig.cap="*Figure 1. Illustration of the data processing workflow. In **1**, each species is assigned a unique ID based on its coordinates, as detailed in [this other repository](https://github.com/innerhaze/Assignment-of-Unique-Identifiers-to-Patches-in-Connectivity-Modeling-Using-Graphab?tab=readme-ov-file). In **2**, described in the 'Linksets in New Folder' section of this repository, connectivity indices are obtained for the IDs of each patch, corresponding to each species. In **3**, detailed in the 'Assignment of Species Identities to Linkset Results' section of this repository, the IDs in the linkset files created in 2 are renamed using the IDs from 1. In **4**, the transformation from a relationship list (incidence table) to a distance matrix is shown, where each created index (Dist, DistM, and CF) is split into three separate matrices. The dashes represent missing data in these matrices, as only the available data from the example in 3 is being considered.*", out.width='140%'}
+```{r echo=FALSE, fig.align='center', fig.cap="*Figure 1. Illustration of the data processing workflow. In **1**, each species is assigned a unique ID based on its coordinates, as detailed in [this other repository](https://github.com/innerhaze/Assignment-of-Unique-Identifiers-to-Patches-in-Connectivity-Modeling-Using-Graphab?tab=readme-ov-file). In **2**, described in the 'Linksets in New Folder' section of this repository, connectivity indices are obtained for the IDs of each patch, corresponding to each species. In **3**, detailed in the 'Assignment of Species Identities to Linkset Results' section of this repository, the IDs in the linkset files created in 2 are renamed using the IDs from 1.*", out.width='120%'}
 knitr::include_graphics("pasos.jpg")
 
 ```
